@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "PCAT photo app",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [
     "photo",
@@ -15,6 +17,11 @@
   "author": "azizozkrcdg",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^3.1.7",
     "prettier": "3.3.3"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1"
   }
 }
