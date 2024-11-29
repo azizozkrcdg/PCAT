@@ -21,7 +21,7 @@
 				<main>
 					<div class="row mb-5 pb-4">
 						<div class="col-12">
-							<img src="img/video-detail-1.jpg" alt="Image" class="img-fluid tm-catalog-item-img">
+							<img src="<%= photo.image %>" alt="img" class="img-fluid tm-catalog-item-img">
 						</div>
 					</div>
 					<div class="row mb-5 pb-5">
@@ -36,7 +36,7 @@
 							<!-- Share box -->
 							<div class="tm-bg-gray tm-share-box">
 								<div class="text-center">
-									<button class="btn btn-primary p-0 mb-4 tm-btn-animate tm-btn-download tm-icon-download"><span>Update Details</span></button>	
+									<a href="/photos/edit/<%= photo._id %>" class="btn btn-primary p-0 mb-4 tm-btn-animate tm-btn-download tm-icon-download"><span>Update Details</span></a>	
 								</div>	
 								<div class="text-center">
 									<button class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Delete Photo</span></button>	

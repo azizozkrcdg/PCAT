@@ -16,7 +16,7 @@ https://templatemo.com/tm-552-video-catalog
 			<div class="tm-welcome-container tm-fixed-header tm-fixed-header-3">
 				<div class="text-center">
 					<p class="pt-5 px-3 tm-welcome-text tm-welcome-text-2 mb-1 mt-lg-0 mt-5 text-white mx-auto">
-                <h3 style="color: azure;">ADD NEW PHOTO</h3>
+                <h3 style="color: azure;">EDIT THE PHOTO</h3>
           </p>                	
 				</div>                
             </div>
@@ -31,7 +31,7 @@ https://templatemo.com/tm-552-video-catalog
 					<div class="row mt-3 mb-5 pb-3">
 						<div class="col-12">
 							<div class="mx-auto tm-about-text-container px-3">
-								<h2 class="tm-page-title mb-4 tm-text-primary">Add New Photo</h2>
+								<h2 class="tm-page-title mb-4 tm-text-primary">Edit the Photo</h2>
                                 <p class="mb-2">
                                     Integer sit amet odio id libero tincidunt dignissim in eget arcu. Aliquam tristique ut magna sit amet tincidunt. Sed tempor tellus nulla, molestie luctus lectus tincidunt id. You are <u>not allowed</u> to re-distribute the template ZIP file on any template collection website.
                                 </p>
@@ -42,23 +42,19 @@ https://templatemo.com/tm-552-video-catalog
                     <div class="mx-auto tm-about-text-container px-3">
                         <div class="row">
                             <div class="col-lg-12 ">
-                                <form id="contact-form" action="/photos" method="POST" class="tm-contact-form" enctype="multipart/form-data">
+                                <form id="contact-form" action="/photos/<%= photo._id %>?_method=PUT" method="POST" class="tm-contact-form" enctype="multipart/form-data">
                                   <div class="form-group">
-                                    <input type="text" name="title" class="form-control rounded-0" placeholder="Photo Title" required="" />
+                                    <input type="text" name="title" value="<%= photo.title %>" class="form-control rounded-0" placeholder="Photo Title" required="" />
                                   </div>
 
                               
                                   <div class="form-group">
                                     <textarea rows="8" name="description" class="form-control rounded-0" placeholder="Photo Description"
-                                              required=""></textarea>
-                                  </div>
-
-                                  <div class="form-group">
-                                    <input type="file" name="image" class="form-control-file rounded-0">
+                                              required=""><%= photo.description %></textarea>
                                   </div>
 
                                   <div class="form-group mb-0">
-                                    <button  type="submit" class="btn btn-primary rounded-0  ml-auto mr-5 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Submit</span></button>
+                                    <button  type="submit" class="btn btn-primary rounded-0  ml-auto mr-5 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Update</span></button>
                                   </div>
                                 </form>    
                             </div>
