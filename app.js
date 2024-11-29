@@ -5,6 +5,9 @@ import Photo from './models/Photo.js';
 import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 
 const app = express();
 
@@ -16,7 +19,14 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
-app.use(methodOverride('_method'));
+app.use(
+  methodOverride('_method', {
+    methods: ['POST', 'GET'],
+  })
+);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // EJS TEMPLATE ENGİNE
 app.set('view engine', 'ejs');
@@ -74,6 +84,14 @@ app.put('/photos/:id', async (req, res) => {
   photo.save();
 
   res.redirect(`/photos/${req.params.id}`);
+});
+
+app.delete('/photos/:id', async (req, res) => {
+  const photo = await Photo.findOne({_id: req.params.id});
+  let deletedImage = "./public" + photo.image;
+  fs.unlinkSync(deletedImage);
+  await Photo.findByIdAndDelete(req.params.id);
+  res.redirect("/");
 });
 
 // port listen
