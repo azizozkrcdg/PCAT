@@ -1,10 +1,20 @@
-import Photo from "../models/Photo.js";
-import fs from "fs"
+import Photo from '../models/Photo.js';
+import fs from 'fs';
 
 const getAllPhotos = async (req, res) => {
-  const photos = await Photo.find({}).sort('-dateCreated');
+  const page = req.query.page || 1;
+  const photosPerPage = 2;
+
+  const totalPhotos = await Photo.find().countDocuments();
+  const photos = await Photo.find({})
+    .sort('-dateCreated')
+    .skip((page - 1) * photosPerPage)
+    .limit(photosPerPage);
+
   res.render('index.ejs', {
-    photos,
+    photos: photos,
+    current: page,
+    pages: Math.ceil(totalPhotos / photosPerPage),
   });
 };
 
@@ -51,4 +61,4 @@ const deletePhoto = async (req, res) => {
   res.redirect('/');
 };
 
-export {getAllPhotos, getPhoto, createPhoto, updatePhoto, deletePhoto};
+export { getAllPhotos, getPhoto, createPhoto, updatePhoto, deletePhoto };

@@ -1,16 +1,17 @@
 import express from 'express';
 import methodOverride from 'method-override';
 import ejs from 'ejs';
-import mongoose from 'mongoose';
+import dotenv from "dotenv";
+import connectionDB from "./config/db.js";
 import fileUpload from 'express-fileupload';
 import * as photoControllers from "./controllers/photoControllers.js";
 import * as pageControllers from "./controllers/pageControllers.js";
 
 
 const app = express();
-
+dotenv.config();
 // connect db
-mongoose.connect('mongodb://localhost/pcat-db');
+connectionDB();
 
 // MİDDLEWARES
 app.use(express.static('public'));
@@ -41,7 +42,7 @@ app.get('/add', pageControllers.getAddPage);
 app.get('/photos/edit/:id', pageControllers.getEditPage);
 
 // port listen
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`The server is running on port ${port}`);
 });
